@@ -1,13 +1,24 @@
-import BarraNav from "./componentes/nav/Nav";
-import ItemListContainer from "./componentes/itemListContainer/ItemListContainer";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BarraNavegacion from './componentes/barraNav/BarraNavegacion';
+import ItemListContainer from './componentes/itemListContainer/ItemListContainer'
+import ItemDetailContainer from './componentes/itemDetailContainer/ItemDetailContainer'
+import MenuSemanal from './componentes/menuSemanal/MenuSemanal';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
 function App() {
   
-  const saludo= " Bienvenidos a Mia Pasta. Les presentamos las mejores pastas de la web. Hace tu pedido y comprobalo. Te esperamos"
+
   return (
     <>
-      <BarraNav/>
-      <ItemListContainer mensaje={saludo}/>
+      <BrowserRouter>
+      <BarraNavegacion/>
+        <Routes>
+          <Route path='/' element={<ItemListContainer/>}/>
+          <Route path='/:category' element={<ItemListContainer/>}/>
+          <Route path='/item/:comidaId' element={<ItemDetailContainer/>}/>
+          <Route path='/menuSemanal' element={<MenuSemanal/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
